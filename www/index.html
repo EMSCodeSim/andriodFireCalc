@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>FireOps Calc | Fire Pump Calculator & Engineer Training Tools</title>
+  <meta name="description" content="FireOps Calc is a firefighter-built pump pressure calculator and training site with printable pump cards, pump scenarios, friction loss tools, relay pumping, water supply, and driver/operator resources."/>
+  <link rel="canonical" href="https://fireopscalc.com/"/>
+  <link rel="icon" href="/fireopscalc.png"/>
+  <link rel="apple-touch-icon" href="/fireopscalc.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="robots" content="index,follow,max-image-preview:large"/>
+  <meta name="theme-color" content="#08090c"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="FireOps Calc — Fire Pump Calculator & Training Tools"/>
+  <meta property="og:description" content="Run pump pressure calculations, build printable pump cards, create training scenarios, and study fireground hydraulics from a firefighter-built web tool."/>
+  <meta property="og:url" content="https://fireopscalc.com/"/>
+  <meta property="og:image" content="https://fireopscalc.com/fireopscalc.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="FireOps Calc — Fire Pump Calculator & Training Tools"/>
+  <meta name="twitter:description" content="A phone-friendly pump calculator, printable pump card creator, and engineer training resource built for firefighters."/>
+  <meta name="twitter:image" content="https://fireopscalc.com/fireopscalc.png"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"WebSite","@id":"https://fireopscalc.com/#website","name":"FireOps Calc","url":"https://fireopscalc.com/","description":"Fire pump calculator, printable pump card creator, printable training scenarios, and fireground hydraulics reference tools for firefighters."},
+      {"@type":"SoftwareApplication","@id":"https://fireopscalc.com/#software","name":"FireOps Calc","url":"https://fireopscalc.com/","image":"https://fireopscalc.com/fireopscalc.png","applicationCategory":"EducationalApplication","operatingSystem":"Web, iOS, Android","description":"A firefighter-built fire pump calculator and training tool for pump pressure, friction loss, water supply, relay pumping, standpipe calculations, pump cards, and driver/operator training.","sameAs":["https://apps.apple.com/us/app/fireopscalc/id6753922160","https://play.google.com/store/apps/details?id=com.fireopscalc.app"]},
+      {"@type":"FAQPage","@id":"https://fireopscalc.com/#faq","mainEntity":[
+        {"@type":"Question","name":"What is FireOps Calc?","acceptedAnswer":{"@type":"Answer","text":"FireOps Calc is a firefighter-built fire pump calculator and training resource for pump pressure, friction loss, printable pump cards, printable scenarios, and driver/operator practice."}},
+        {"@type":"Question","name":"What tools are available?","acceptedAnswer":{"@type":"Answer","text":"FireOps Calc includes a web pump calculator, pump card creator, printable pump scenarios, hydrant flow calculator, relay pumping calculator, nozzle reaction calculator, tender shuttle timer, fire load calculator, how-to guides, and fireground hydraulics training pages."}},
+        {"@type":"Question","name":"Is FireOps Calc for training or real fireground use?","acceptedAnswer":{"@type":"Answer","text":"FireOps Calc is designed for training, quick reference, and calculation support. Users should always follow department SOPs, local guidelines, instructor direction, and manufacturer data."}}
+      ]}
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/fireops-unified.css?v=20260503b">
+</head>
+<body class="home-page">
+  <a class="skip" href="#tools">Skip to tools</a>
+
+  <header class="site-header">
+    <div class="wrap site-nav">
+      <a class="site-brand" href="/" aria-label="FireOps Calc home">
+        <img src="/fireopscalc2.png" alt=""/>
+        <span><span class="brand-mark">FireOps</span> Calc</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#tools">Tools</a>
+        <a href="#practice">Practice</a>
+        <a href="#guides">Guides</a>
+        <a href="#apps">Apps</a>
+      </nav>
+      <a class="nav-button primary" href="/calculator.html">Open Calculator</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="home-hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Firefighter-built pump math & training</div>
+          <h1>Clean pump calculations. <span class="red-text">Better engineer practice.</span></h1>
+          <p class="lead">FireOps Calc brings pump pressure, friction loss, water supply, printable pump cards, and scenario practice into one consistent web tool hub for firefighters and driver/operators.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#tools">View All Tools</a>
+            <a class="btn secondary" href="/tools/pump-card.html">Create Pump Card</a>
+            <a class="btn secondary" href="/scenario-player.html">Practice Scenarios</a>
+          </div>
+          <div class="trust-row" aria-label="FireOps Calc highlights">
+            <span class="trust-pill">Built for phone use</span>
+            <span class="trust-pill">Printable training sheets</span>
+            <span class="trust-pill">Department setup friendly</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Pump pressure example">
+          <div class="hero-panel-top">
+            <span class="status-dot">Training mode</span>
+            <span class="trust-pill">Engine 181</span>
+          </div>
+          <div class="calculator-card">
+            <div class="calc-row"><span>Nozzle</span><strong>50 PSI</strong></div>
+            <div class="calc-row"><span>Line</span><strong>200' 1¾″</strong></div>
+            <div class="calc-row"><span>Flow</span><strong>185 GPM</strong></div>
+            <div class="calc-row"><span>Formula</span><strong>NP + FL</strong></div>
+            <div class="calc-row"><span>Target PDP</span><strong class="red-text">156 PSI</strong></div>
+          </div>
+          <p class="calc-footer">Consistent card styling now carries across the homepage and tool pages.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quick-strip" aria-label="Core FireOps features">
+      <div class="wrap">
+        <div class="quick-grid">
+          <article class="quick-item"><div class="quick-icon">⚙️</div><h3>Calculate</h3><p>Pump pressure, friction loss, elevation, nozzle reaction, and water supply.</p></article>
+          <article class="quick-item"><div class="quick-icon">🧾</div><h3>Print</h3><p>Build pump cards and printable scenario worksheets for station training.</p></article>
+          <article class="quick-item"><div class="quick-icon">🚒</div><h3>Practice</h3><p>Use visual scenario problems with formulas, answers, and mistake feedback.</p></article>
+          <article class="quick-item"><div class="quick-icon">📚</div><h3>Teach</h3><p>Use how-to guides and examples to support driver/operator instruction.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" id="tools">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Tool hub</div>
+          <h2>Fireground calculators with one clean look.</h2>
+          <p>All tools now use the same professional card style, buttons, spacing, and form controls so users know they are still inside FireOps Calc.</p>
+        </div>
+
+        <div class="tools-grid">
+          <a class="tool-card" href="/calculator.html"><span class="tool-badge">Core</span><div class="tool-icon">🧮</div><h3>Pump Pressure Calculator</h3><p>Calculate PDP using nozzle pressure, hose friction loss, elevation, and appliance loss.</p><span class="open">Open calculator →</span></a>
+          <a class="tool-card" href="/tools/friction-loss-quick.html"><span class="tool-badge">Quick</span><div class="tool-icon">〰️</div><h3>Friction Loss Quick</h3><p>Run fast hose friction loss calculations for common attack and supply lines.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/hydrant-flow.html"><span class="tool-badge">Water</span><div class="tool-icon">🚰</div><h3>Hydrant Flow</h3><p>Estimate available hydrant flow from static, residual, and flowing pressures.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/relay-pumping.html"><span class="tool-badge">Water</span><div class="tool-icon">🚒</div><h3>Relay Pumping</h3><p>Determine relay distance, engine spacing, pressure loss, and engine count.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/tender-timer.html"><span class="tool-badge">Rural</span><div class="tool-icon">⏱️</div><h3>Tender Shuttle</h3><p>Estimate cycle time, delivered GPM, and number of tenders needed.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/nozzle-reaction.html"><span class="tool-badge">Attack</span><div class="tool-icon">💦</div><h3>Nozzle Reaction</h3><p>Calculate reaction force for fog and smooth bore nozzles.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/tank-duration.html"><span class="tool-badge">Water</span><div class="tool-icon">🛢️</div><h3>Tank Duration</h3><p>Estimate how long onboard water will last at different flows.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/elevation-pressure.html"><span class="tool-badge">Quick</span><div class="tool-icon">↕️</div><h3>Elevation Pressure</h3><p>Convert elevation change into PSI gain or loss for PDP adjustments.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/standpipe-pump-pressure-calculator.html"><span class="tool-badge">High-rise</span><div class="tool-icon">🏢</div><h3>Standpipe</h3><p>Calculate standpipe pump pressure with elevation, hose, and system needs.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/fire-load-calculator.html"><span class="tool-badge">Training</span><div class="tool-icon">🔥</div><h3>Fire Flow Needed</h3><p>Estimate fire flow needs and attack line requirements for training discussion.</p><span class="open">Calculate →</span></a>
+          <a class="tool-card" href="/tools/pump-card.html"><span class="tool-badge">Print</span><div class="tool-icon">🧾</div><h3>Pump Card Creator</h3><p>Create custom printable pump charts for your apparatus and department setup.</p><span class="open">Generate →</span></a>
+          <a class="tool-card" href="/tools/printable-scenarios.html"><span class="tool-badge">Print</span><div class="tool-icon">📝</div><h3>Printable Scenarios</h3><p>Build four pump-pressure practice problems per page with answer space.</p><span class="open">Create sheets →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section split-section" id="practice">
+      <div class="wrap split-grid">
+        <div>
+          <div class="eyebrow">Scenario practice</div>
+          <h2>Turn pump math into visual practice.</h2>
+          <p class="lead" style="color:#5d6370!important">Use realistic scene images and JSON scenarios to ask the student for PDP, show the answer, explain the math, and point out common mistakes.</p>
+          <ul class="feature-list">
+            <li>Phone-friendly scene practice for quick station drills.</li>
+            <li>Printable worksheets for classroom or academy use.</li>
+            <li>Formula breakdowns that reinforce driver/operator math.</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn primary" href="/scenario-player.html">Play Scenarios</a>
+            <a class="btn light" href="/tools/printable-scenarios.html">Print Scenario Sheets</a>
+          </div>
+        </div>
+        <div class="preview-card" aria-label="Scenario preview">
+          <div class="preview-header"><span>Residential attack line</span><span>Scenario 001</span></div>
+          <div class="preview-scene">
+            <div class="preview-road"></div>
+            <div class="preview-engine">E181</div>
+            <div class="preview-hose"></div>
+            <div class="preview-nozzle">Fog 185</div>
+            <span class="preview-label a">200' 1¾″</span>
+            <span class="preview-label b">NP 50 PSI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" id="apps">
+      <div class="wrap">
+        <div class="app-grid">
+          <div>
+            <div class="eyebrow">Mobile apps</div>
+            <h2 style="margin:0 0 8px;font-size:clamp(28px,4vw,44px);letter-spacing:-.05em">Take FireOps Calc with you.</h2>
+            <p style="margin:0;color:#cfd3dc;max-width:760px">The website is the free public tool hub. The iPhone and Android apps are available for mobile use, testing, and ongoing feature development.</p>
+          </div>
+          <div class="store-row">
+            <a class="store-badge" href="https://apps.apple.com/us/app/fireopscalc/id6753922160" target="_blank" rel="noopener"> App Store</a>
+            <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.fireopscalc.app" target="_blank" rel="noopener">▶ Google Play</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" id="guides">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Reference guides</div>
+          <h2>Useful pages that support search and training.</h2>
+          <p>These pages help firefighters find the site through Google and give users practical explanations after they use the tools.</p>
+        </div>
+        <div class="guide-grid">
+          <a class="guide-card" href="/how-to/calculate-pump-discharge-pressure.html"><small>Pump math</small><h3>Calculate Pump Discharge Pressure</h3><p>Explain PDP using nozzle pressure, friction loss, elevation, and appliance loss.</p></a>
+          <a class="guide-card" href="/how-to/calculate-fire-hose-friction-loss.html"><small>Friction loss</small><h3>Calculate Fire Hose Friction Loss</h3><p>Teach the common C × Q² hose friction loss method.</p></a>
+          <a class="guide-card" href="/how-to/relay-pumping-distance-between-engines.html"><small>Water supply</small><h3>Relay Pumping Distance Between Engines</h3><p>Show relay pumping concepts, spacing, and pressure loss planning.</p></a>
+        </div>
+        <div class="hero-actions" style="justify-content:center;margin-top:24px">
+          <a class="btn light" href="/how-to.html">View All How-To Guides</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div><strong>FireOps Calc</strong><br/>Firefighter-built pump pressure tools and training resources.</div>
+      <div><a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy-policy.html">Privacy</a></div>
+    </div>
+  </footer>
+</body>
+</html>
