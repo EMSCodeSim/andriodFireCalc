@@ -1,0 +1,20 @@
+{
+  "name": "fireopscalc-android",
+  "version": "9.0.5",
+  "private": true,
+  "description": "Android-only FireOps Calc source recovered from Play build and migrated for Android 16 / API 36.",
+  "scripts": {
+    "android:add": "cap add android && node scripts/patch-android-api36.mjs",
+    "android:sync": "cap sync android && node scripts/patch-android-api36.mjs",
+    "android:verify": "node scripts/verify-api36.mjs",
+    "android:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.0",
+    "@capacitor/core": "8.5.0",
+    "cordova-plugin-purchase": "13.13.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.0"
+  }
+}
