@@ -1,3 +1,4 @@
+# One-time bootstrap/rebuild workflow for the dedicated Android repo.
 name: Bootstrap Android from pump
 
 on:
