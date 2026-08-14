@@ -1,0 +1,37 @@
+workflows:
+  android-release:
+    name: FireOps Calc – Android API 36 Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    environment:
+      java: 21
+      node: 22
+      vars:
+        ANDROID_APP_ID: "com.fireopscalc.app"
+        ANDROID_APP_NAME: "FireOps Calc"
+      android_signing:
+        - FireOpsCalcReleaseKey
+
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci
+
+      - name: Sync Android and verify API 36
+        script: |
+          npm run android:sync
+          npm run android:verify
+
+      - name: Build signed Android App Bundle
+        script: |
+          cd android
+          ./gradlew bundleRelease \
+            -Pandroid.injected.signing.store.file=$CM_KEYSTORE_PATH \
+            -Pandroid.injected.signing.store.password=$CM_KEYSTORE_PASSWORD \
+            -Pandroid.injected.signing.key.alias=$CM_KEY_ALIAS \
+            -Pandroid.injected.signing.key.password=$CM_KEY_PASSWORD
+
+    artifacts:
+      - android/app/build/outputs/bundle/release/*.aab
+      - android/app/build/outputs/apk/release/*.apk
