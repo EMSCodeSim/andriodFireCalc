@@ -1,0 +1,25 @@
+FireOps Calc Android recovery + API 36 migration
+=================================================
+Source recovered from the user-provided 84.apk and 84.aab on 2026-08-14.
+
+Original Play build:
+- package: com.fireopscalc.app
+- versionCode: 84
+- versionName: 9.0.4
+- minSdk: 23
+- compileSdk: 35
+- targetSdk: 35
+- Android Gradle Plugin observed in AAB metadata: 8.7.2
+- Cordova purchase web plugin assets: 13.13.1
+- Android BillingClient dependency observed in AAB: 8.3.0
+
+Migration baseline:
+- package unchanged: com.fireopscalc.app
+- versionCode: 85
+- versionName: 9.0.5
+- minSdk: 24
+- compileSdk: 36
+- targetSdk: 36
+- Capacitor: 8.5.0
+
+The project deliberately keeps the recovered Android application separate from the public FireOps Calc website.
