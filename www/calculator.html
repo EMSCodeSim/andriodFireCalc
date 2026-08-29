@@ -8,11 +8,7 @@
   <link rel="canonical" href="https://fireopscalc.com/calculator.html"/>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="ccs/mobile-friendly.css?v=20260406b">
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9414291143716298"
-     crossorigin="anonymous"></script>
-
-  <!-- Open Graph -->
+<!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="FireOps Calc — Fast fire pump calculations"/>
   <meta property="og:description" content="Hydrant % drop to estimate flow, tender shuttle GPM with round trip, and quick line math — built for phones on the rig."/>
@@ -28,17 +24,7 @@
   <!-- Icons / PWA -->
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W3WSFVFGW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-6W3WSFVFGW');
-  </script>
-
-  <style>
+<style>
     :root{
       --bg:#060d17; --panel:#0b1320; --edge:#15253b; --fg:#e9f1ff;
       --muted:#cfe4ff; --accent:#46b0ff; --warn:#ffa74d; --alert:#ff6b6b;
@@ -742,8 +728,7 @@
 <!-- App JS (router + view.calc.js, etc.) -->
   <script>
     (function () {
-      // If we're inside the native app, pull JS from the live website so Android can't
-      // get stuck on an older bundled copy.
+      // The legacy Android app always runs its committed local JS bundle.
       function isNativeApp() {
         try {
           if (window && (window.cordova || window.phonegap || window.PhoneGap)) return true;
