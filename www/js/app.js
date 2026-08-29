@@ -1,12 +1,9 @@
 // app.js — PRODUCTION (Option A: FULL APP BLOCK AFTER 5 DAYS)
-// - On boot: init billing silently, then if hardBlocked() => show paywall + lock screen
-// - On unlock: hide paywall + load calc (NO reload loop)
+// Dedicated legacy Android shell. Keep this source independent from the website/Flutter app.
 
-import { renderAdOnce } from './ads-guards.js';
-
-const ADS_CLIENT = 'ca-pub-9414291143716298';
-const SLOT_TABLES_BOTTOM = 'REPLACE_WITH_SLOT_ID';
-const BUILD_V = '20260406b';
+const BUILD_V = '20260829-legacy-stability';
+const LEGACY_VERSION = '9.1.4';
+const LEGACY_BUILD = '94';
 const modulePath = (name) => `./${name}.js?v=${BUILD_V}`;
 
 const app = document.getElementById('app');
@@ -26,9 +23,52 @@ function isNativeApp() {
 }
 
 /**
+ * Android 16 edge-to-edge safety.
+ * This deliberately changes spacing only; it does not redesign the legacy UI.
+ */
+function installSafeAreaGuards() {
+  if (!isNativeApp() || document.getElementById('fireops-safe-area-guards')) return;
+  const style = document.createElement('style');
+  style.id = 'fireops-safe-area-guards';
+  style.textContent = `
+    .shell {
+      padding-top: calc(12px + env(safe-area-inset-top, 0px)) !important;
+      padding-left: calc(12px + env(safe-area-inset-left, 0px)) !important;
+      padding-right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    .bottom-nav {
+      padding-left: calc(14px + env(safe-area-inset-left, 0px)) !important;
+      padding-right: calc(14px + env(safe-area-inset-right, 0px)) !important;
+      padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    #aboutSheet, #chartsSheet {
+      padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    @media (min-width: 768px) {
+      .shell {
+        padding-top: calc(16px + env(safe-area-inset-top, 0px)) !important;
+        padding-left: calc(16px + env(safe-area-inset-left, 0px)) !important;
+        padding-right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function installVersionIndicator() {
+  const aboutBody = document.getElementById('aboutBody');
+  if (!aboutBody || document.getElementById('fireops-version-indicator')) return;
+  const el = document.createElement('div');
+  el.id = 'fireops-version-indicator';
+  el.textContent = `FireOps Calc ${LEGACY_VERSION} • Build ${LEGACY_BUILD}`;
+  el.style.cssText = 'margin:0 0 10px;padding:7px 10px;border:1px solid #1c2940;border-radius:10px;background:#050913;color:#cfe4ff;font-size:12px;text-align:center;';
+  aboutBody.prepend(el);
+}
+
+/**
  * ANDROID "STUCK OLD UI" FIX:
- * If Android ever installed an older Service Worker, it can keep serving old JS forever
- * (especially inside WebView). This nukes SW + CacheStorage on native app startup.
+ * Remove any stale Service Worker / CacheStorage left by historical web-wrapper builds.
  */
 async function purgeServiceWorkerAndCachesOnNative() {
   if (!isNativeApp()) return;
@@ -87,20 +127,6 @@ async function openCharts() {
     const mod = await loaders.charts();
     const res = await mod.render(chartsMount);
     chartsDispose = res?.dispose || null;
-
-    if (!isNativeApp()) {
-      try {
-        renderAdOnce({
-          key: 'tables_bottom',
-          container: chartsMount,
-          position: 'bottom',
-          client: ADS_CLIENT,
-          slot: SLOT_TABLES_BOTTOM,
-          format: 'auto',
-          style: 'display:block; margin:16px 0;',
-        });
-      } catch {}
-    }
   } catch (err) {
     if (chartsMount) chartsMount.innerHTML = '<div class="card">Failed to load charts: ' + String(err) + '</div>';
   }
@@ -159,7 +185,7 @@ async function enforceProductionGate() {
   const pw = await getPaywall();
   if (!pw) return true;
 
-  // Always init billing silently so owned users unlock immediately
+  // Always init billing silently so owned users unlock immediately.
   try { await pw.initBilling?.(); } catch {}
 
   if (pw.hardBlocked?.()) {
@@ -186,7 +212,7 @@ window.addEventListener('fireops:pro_unlocked', async () => {
   try {
     await setView('calc');
   } catch {
-    // last-resort single reload if something is half-mounted
+    // Last-resort single reload if something is half-mounted.
     try { window.location.reload(); } catch {}
   }
 });
@@ -219,7 +245,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
   const v = b.dataset.view;
   if (v === 'charts') { openCharts(); return; }
 
-  // Keep your existing behavior (calc from practice can hard reload if you want)
+  // Preserve existing behavior: returning from practice remounts the calculator cleanly.
   if (v === 'calc' && currentView?.name === 'practice') {
     window.location.reload();
     return;
@@ -228,9 +254,62 @@ buttons.forEach(b => b.addEventListener('click', () => {
   setView(v);
 }));
 
+/**
+ * Synchronous Android Back contract used by MainActivity.
+ * Return true when the app consumed the Back press; return false to let Android exit.
+ */
+function handleAndroidBack() {
+  try {
+    const editorHost = document.getElementById('stageOverlayHost');
+    if (editorHost && editorHost.style.display !== 'none' && window.BottomSheetEditor?.close) {
+      window.BottomSheetEditor.close();
+      return true;
+    }
+
+    const quickStart = document.getElementById('quickStartModal');
+    if (quickStart && !quickStart.classList.contains('hidden')) {
+      document.getElementById('qsCloseBtn')?.click();
+      return true;
+    }
+
+    const about = document.getElementById('aboutOverlay');
+    if (about && about.style.display === 'block') {
+      document.getElementById('closeAbout')?.click();
+      return true;
+    }
+
+    if (chartsOverlay && chartsOverlay.style.display === 'block') {
+      closeCharts();
+      return true;
+    }
+
+    if (!_blocked && currentView?.name && currentView.name !== 'calc') {
+      setView('calc').catch(() => { try { window.location.reload(); } catch {} });
+      return true;
+    }
+  } catch (err) {
+    console.warn('Android Back handling failed', err);
+  }
+
+  // Already at the main Pump screen: allow Android to exit normally.
+  return false;
+}
+
+window.fireopsHandleAndroidBack = handleAndroidBack;
+
+// Cordova-compatible fallback for older WebView behavior.
+document.addEventListener('backbutton', (event) => {
+  if (handleAndroidBack()) {
+    try { event.preventDefault(); } catch {}
+  }
+}, false);
+
 // Boot
 (async () => {
-  // 🔥 critical: prevent Android WebView from serving old cached UI
+  installSafeAreaGuards();
+  installVersionIndicator();
+
+  // Prevent Android WebView from serving old cached UI.
   await purgeServiceWorkerAndCachesOnNative();
 
   const ok = await enforceProductionGate();
