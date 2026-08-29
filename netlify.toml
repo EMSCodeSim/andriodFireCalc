@@ -1,6 +1,0 @@
-[build]
-  publish = "www"
-
-# This repository contains the deployable static FireOps Calc web bundle under
-# www/. The Android/Capacitor source lives alongside it and must not be used as
-# Netlify's site root.
